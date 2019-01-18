@@ -1,12 +1,14 @@
+import java.util.Map;
+
 public class CodeWriter {
     public CodeWriter(String filePath) {
     }
 
-    public void writeArithmetic(String command) {
+    public void writeArithmetic(Map<Integer, String> command) {
 
     }
 
-    public void writePushPop(CommandType commandType, String segment, int index) {
+    public void writePushPop(Map<Integer, String> command) {
 
     }
 }

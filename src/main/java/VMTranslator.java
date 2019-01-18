@@ -15,7 +15,7 @@ public class VMTranslator {
                 codeWriter.writeArithmetic(parser.getCommand());
             } else if (parser.getCommandType() == CommandType.C_PUSH ||
                     parser.getCommandType() == CommandType.C_POP) {
-                codeWriter.writePushPop()
+                codeWriter.writePushPop(parser.getCommand());
             }
         }
     }

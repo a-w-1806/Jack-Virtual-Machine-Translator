@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class Parser {
     public Parser(String path) {
 
@@ -15,7 +17,11 @@ public class Parser {
         return null;
     }
 
-    public String getCommand() {
+    /** Each command is represented by a map, where key is the index, value is the string
+     * For example, push static 2 => {0: "push", 1: "static", 2: "2"}
+     * @return the map
+     */
+    public Map<Integer, String> getCommand() {
         return null;
     }
 }
