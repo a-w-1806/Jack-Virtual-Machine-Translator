@@ -84,6 +84,42 @@ public class CodeWriter {
         String assembly = "";
 
         switch (memSeg) {
+            case "local": case "argument": case "this": case "that":
+                String base = "";
+                switch (memSeg) {
+                    case "local": base = "LCL"; break;
+                    case "argument": base = "ARG"; break;
+                    case "this": base = "THIS"; break;
+                    case "that": base = "THAT"; break;
+                }
+                if (pushPop.equals("push")) {
+                    assembly += "@" + num + System.lineSeparator() +
+                                "D=A" + System.lineSeparator() +
+                                "@" + base + System.lineSeparator() +
+                                "A=D+M" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "M=M+1";
+                } else {
+                    // Pop.
+                    assembly += "@" + num + System.lineSeparator() +
+                                "D=A" + System.lineSeparator() +
+                                "@" + base + System.lineSeparator() +
+                                "D=D+M" + System.lineSeparator() +
+                                "@R13" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "M=M-1" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@R13" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "M=D";
+                }
+                break;
             case "constant":
                 // Only can push to constant.
                 assembly += "@" + num + System.lineSeparator() +
