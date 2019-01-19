@@ -3,6 +3,8 @@ import java.util.Map;
 
 public class CodeWriter {
     private PrintStream printStream;
+    // How many times do eq, lt, gt appears. Need to be used as part of the labels.
+    private int timeComparisons = 0;
 
     public CodeWriter(String filePath) {
         try {
@@ -50,9 +52,32 @@ public class CodeWriter {
                             "A=M" + System.lineSeparator() +
                             "M=-M";
                 break;
-            case "eq": break;
-            case "gt": break;
-            case "lt": break;
+            case "eq": case "gt": case "lt":
+                String type = "";
+                switch (arith) {
+                    case "eq": type = "JEQ"; break;
+                    case "gt": type = "JGT"; break;
+                    case "lt": type = "JLT"; break;
+                }
+                assembly += "@SP" + System.lineSeparator() +
+                            "AM=M-1" + System.lineSeparator() +
+                            "D=M" + System.lineSeparator() +
+                            "A=A-1" + System.lineSeparator() +
+                            "D=M-D" + System.lineSeparator() +
+                            "@TRUE" + timeComparisons + System.lineSeparator() +
+                            "D;" + type + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "A=M-1" + System.lineSeparator() +
+                            "M=0" + System.lineSeparator() +
+                            "@CONTINUE" + timeComparisons + System.lineSeparator() +
+                            "0;JMP" + System.lineSeparator() +
+                            "(TRUE" + timeComparisons + ")" + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "A=M-1" + System.lineSeparator() +
+                            "M=-1" + System.lineSeparator() +
+                            "(CONTINUE" + timeComparisons + ")";
+                timeComparisons++;
+                break;
             case "not":
                 assembly += "@SP" + System.lineSeparator() +
                             "A=M" + System.lineSeparator() +
