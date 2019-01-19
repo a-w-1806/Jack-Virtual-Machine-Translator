@@ -47,16 +47,16 @@ public class CodeWriter {
                 break;
             case "neg":
                 assembly += "@SP" + System.lineSeparator() +
-                        "A=M" + System.lineSeparator() +
-                        "M=-M";
+                            "A=M" + System.lineSeparator() +
+                            "M=-M";
                 break;
             case "eq": break;
             case "gt": break;
             case "lt": break;
             case "not":
                 assembly += "@SP" + System.lineSeparator() +
-                        "A=M" + System.lineSeparator() +
-                        "M=!M";
+                            "A=M" + System.lineSeparator() +
+                            "M=!M";
                 break;
         }
         return assembly;
@@ -77,7 +77,24 @@ public class CodeWriter {
     }
 
     public String generatePushPop(Map<Integer, String> command) {
-        return "this is generatePushPop";
+        String pushPop = command.get(0);
+        String memSeg = command.get(1);
+        String num = command.get(2);
+
+        String assembly = "";
+
+        switch (memSeg) {
+            case "constant":
+                assembly += "@" + num + System.lineSeparator() +
+                            "D=A" + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "A=M" + System.lineSeparator() +
+                            "M=D" + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "M=M+1";
+                break;
+        }
+        return assembly;
     }
 
     public void close() {
