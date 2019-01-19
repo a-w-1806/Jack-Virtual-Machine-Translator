@@ -21,3 +21,4 @@ Standard mapping:
 <img src="images/map1.png" alt="map1" width=700>
 <img src="images/map2.png" alt="map2" width=700>
 
+## Be sure to check out [this project](https://github.com/Yuchen-Wang-SH/Build-a-Computer-From-Logic-Gates-to-Operating-System/tree/master/projects/07) of building a whole modern computer from logic gates to operating system!
