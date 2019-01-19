@@ -13,10 +13,10 @@ public class ParserTest {
 
     @Before
     public void setUp() throws Exception {
-        simpleArith = new Parser("add\nneg\nor", true);
-        commentArith =  new Parser("lt  // This is add  \n   eq  \n", true);
-        simpleMem = new Parser("pop static 2\npush constant 13", true);
-        comment = new Parser("// This is a pure comment", true);
+        simpleArith = new Parser("src/test/resources/SimpleArith.vm");
+        commentArith =  new Parser("src/test/resources/CommentArith.vm");
+        simpleMem = new Parser("src/test/resources/SimpleMem.vm");
+        comment = new Parser("src/test/resources/Comment.vm");
 
         simpleArith.advance();
         commentArith.advance();

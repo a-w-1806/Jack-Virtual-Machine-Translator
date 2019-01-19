@@ -17,11 +17,6 @@ public class Parser {
         }
     }
 
-    public Parser(String s, boolean testing) {
-        // This is only for JUnit.
-        scanner = new Scanner(s);
-    }
-
     public boolean hasMoreCommands() {
         if (!scanner.hasNextLine()) {
             scanner.close();
