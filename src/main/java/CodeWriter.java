@@ -163,14 +163,18 @@ public class CodeWriter {
                                 "M=M+1";
                 } else {
                     // Pop.
-                    assembly += "@SP" + System.lineSeparator() +
+                    assembly += "@5" + System.lineSeparator() +
+                                "D=A" + System.lineSeparator() +
+                                "@" + num + System.lineSeparator() +
+                                "D=D+A" + System.lineSeparator() +
+                                "@R14" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
                                 "M=M-1" + System.lineSeparator() +
                                 "A=M" + System.lineSeparator() +
                                 "D=M" + System.lineSeparator() +
-                                "@5" + System.lineSeparator() +
-                                "D=A" + System.lineSeparator() +
-                                "@" + num + System.lineSeparator() +
-                                "A=D+A" + System.lineSeparator() +
+                                "@R14" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
                                 "M=D";
                 }
                 break;
