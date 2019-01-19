@@ -49,7 +49,7 @@ public class CodeWriter {
                 break;
             case "neg":
                 assembly += "@SP" + System.lineSeparator() +
-                            "A=M" + System.lineSeparator() +
+                            "A=M-1" + System.lineSeparator() +
                             "M=-M";
                 break;
             case "eq": case "gt": case "lt":
@@ -80,7 +80,7 @@ public class CodeWriter {
                 break;
             case "not":
                 assembly += "@SP" + System.lineSeparator() +
-                            "A=M" + System.lineSeparator() +
+                            "A=M-1" + System.lineSeparator() +
                             "M=!M";
                 break;
         }
