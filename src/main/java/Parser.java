@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,12 +10,17 @@ public class Parser {
     private Map<Integer, String> command;
 
     public Parser(String path) {
-        scanner = new Scanner(path);
+        try {
+            scanner = new Scanner(new File(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean hasMoreCommands() {
         if (!scanner.hasNextLine()) {
             scanner.close();
+            return false;
         }
         return scanner.hasNextLine();
     }

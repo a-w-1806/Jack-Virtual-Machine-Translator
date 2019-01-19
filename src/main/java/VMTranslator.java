@@ -5,17 +5,18 @@ public class VMTranslator {
         }
         String path = args[0];
         String extension;
-        int i = path.lastIndexOf('.');
-        if (i > 0) {
-            extension = path.substring(i+1);
+        int lastDotIndex = path.lastIndexOf('.');
+        if (lastDotIndex > 0) {
+            extension = path.substring(lastDotIndex+1);
         } else {
             throw new IllegalArgumentException("Does this file have extension?");
         }
         if (!extension.equals("vm")) {
             throw new IllegalArgumentException("Must specify a valid .vm file!");
         }
+
         Parser parser = new Parser(path);
-        String outFilePath = path.split("\\.")[0] + ".asm";
+        String outFilePath = path.substring(0, lastDotIndex) + ".asm";
         CodeWriter codeWriter = new CodeWriter(outFilePath);
         while (parser.hasMoreCommands()) {
             parser.advance();
