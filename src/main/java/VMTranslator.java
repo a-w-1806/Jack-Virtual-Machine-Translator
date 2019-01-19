@@ -4,7 +4,14 @@ public class VMTranslator {
             throw new IllegalArgumentException("You should only provide a path.");
         }
         String path = args[0];
-        if (!path.split("\\.")[1].equals("vm")) {
+        String extension;
+        int i = path.lastIndexOf('.');
+        if (i > 0) {
+            extension = path.substring(i+1);
+        } else {
+            throw new IllegalArgumentException("Does this file have extension?");
+        }
+        if (!extension.equals("vm")) {
             throw new IllegalArgumentException("Must specify a valid .vm file!");
         }
         Parser parser = new Parser(path);
