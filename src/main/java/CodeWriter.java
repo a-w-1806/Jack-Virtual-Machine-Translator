@@ -85,6 +85,7 @@ public class CodeWriter {
 
         switch (memSeg) {
             case "constant":
+                // Only can push to constant.
                 assembly += "@" + num + System.lineSeparator() +
                             "D=A" + System.lineSeparator() +
                             "@SP" + System.lineSeparator() +
@@ -92,6 +93,25 @@ public class CodeWriter {
                             "M=D" + System.lineSeparator() +
                             "@SP" + System.lineSeparator() +
                             "M=M+1";
+                break;
+            case "static":
+                if (pushPop.equals("push")) {
+                    assembly += "@Static." + num + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "M=M+1";
+                } else {
+                    // Pop
+                    assembly += "@SP" + System.lineSeparator() +
+                                "M=M-1" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@Static." + num + System.lineSeparator() +
+                                "M=D";
+                }
                 break;
         }
         return assembly;
