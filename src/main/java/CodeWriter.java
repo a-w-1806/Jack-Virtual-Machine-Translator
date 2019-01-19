@@ -137,6 +137,32 @@ public class CodeWriter {
                                 "A=D+A" + System.lineSeparator() +
                                 "M=D";
                 }
+                break;
+            case "pointer":
+                String token;
+                if (num.equals("0")) {
+                    token = "THIS";
+                } else {
+                    token = "THAT";
+                }
+                if (pushPop.equals("push")) {
+                    assembly += "@" + token + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "M=M+1";
+                } else {
+                    // Pop.
+                    assembly += "@SP" + System.lineSeparator() +
+                                "M=M-1" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@" + token + System.lineSeparator() +
+                                "M=D";
+                }
+                break;
         }
         return assembly;
     }
