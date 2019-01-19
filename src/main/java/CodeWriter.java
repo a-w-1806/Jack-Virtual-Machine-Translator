@@ -29,7 +29,11 @@ public class CodeWriter {
     }
 
     private String generateComment(Map<Integer, String> command) {
-        return "// this is generateComment" + System.lineSeparator();
+        StringBuilder s = new StringBuilder("// ");
+        for (int i = 0; i < command.size(); i++) {
+            s.append(command.get(i)).append(" ");
+        }
+        return s.toString() + System.lineSeparator();
     }
 
     private String generatePushPop(Map<Integer, String> command) {
