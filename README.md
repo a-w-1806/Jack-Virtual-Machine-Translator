@@ -1,4 +1,5 @@
 # Jack Virtual Machine Translator
+![build](https://travis-ci.com/Yuchen-Wang-SH/Jack-Virtual-Machine-Translator.svg?branch=master)
 
 ## Source: VM Language
 <img src="images/vm.png" alt="vm" width=700>
