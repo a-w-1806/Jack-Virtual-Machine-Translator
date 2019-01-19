@@ -20,7 +20,7 @@ public class CodeWriter {
         printStream.println(comment + assembly);
     }
 
-    public String generateArithmetic(Map<Integer, String> command) {
+    private String generateArithmetic(Map<Integer, String> command) {
         String assembly = "";
         String arith = command.get(0);
         switch (arith) {
@@ -101,7 +101,7 @@ public class CodeWriter {
         return s.toString() + System.lineSeparator();
     }
 
-    public String generatePushPop(Map<Integer, String> command) {
+    private String generatePushPop(Map<Integer, String> command) {
         String pushPop = command.get(0);
         String memSeg = command.get(1);
         String num = command.get(2);
@@ -233,6 +233,10 @@ public class CodeWriter {
     }
 
     public void close() {
+        String endLoop = "(END)" + System.lineSeparator() +
+                        "@END" + System.lineSeparator() +
+                        "0; JMP";
+        printStream.println(endLoop);
         printStream.close();
     }
 }
