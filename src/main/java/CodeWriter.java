@@ -1,14 +1,13 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 
 public class CodeWriter {
-    private FileWriter fileWriter;
+    private PrintStream printStream;
 
     public CodeWriter(String filePath) {
         try {
-            fileWriter = new FileWriter(filePath);
-        } catch (IOException e) {
+            printStream = new PrintStream(new File(filePath));
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -22,10 +21,6 @@ public class CodeWriter {
     }
 
     public void close() {
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        printStream.close();
     }
 }
