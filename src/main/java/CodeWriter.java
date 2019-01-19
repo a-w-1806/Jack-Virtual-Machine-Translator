@@ -22,8 +22,29 @@ public class CodeWriter {
         String assembly = "";
         String arith = command.get(0);
         switch (arith) {
-            case "add": break;
-            case "sub": break;
+            case "add": case "sub": case "and": case "or":
+                assembly += "@2" + System.lineSeparator() +
+                            "D=A" + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "A=M-D" + System.lineSeparator() +
+                            "D=M" + System.lineSeparator() +
+                            "@SP" + System.lineSeparator() +
+                            "M=M-1" + System.lineSeparator() +
+                            "A=M" + System.lineSeparator();
+                if (arith.equals("add")) {
+                    assembly += "D=D+M";
+                } else if (arith.equals("sub")) {
+                    assembly += "D=D-M";
+                } else if (arith.equals("and")) {
+                    assembly += "D=D&M";
+                } else if (arith.equals("or")) {
+                    assembly += "D=D|M";
+                }
+                assembly += System.lineSeparator();
+                assembly += "@SP" + System.lineSeparator() +
+                            "A=M-1" + System.lineSeparator() +
+                            "M=D";
+                break;
             case "neg":
                 assembly += "@SP" + System.lineSeparator() +
                         "A=M" + System.lineSeparator() +
@@ -32,8 +53,6 @@ public class CodeWriter {
             case "eq": break;
             case "gt": break;
             case "lt": break;
-            case "and": break;
-            case "or": break;
             case "not":
                 assembly += "@SP" + System.lineSeparator() +
                         "A=M" + System.lineSeparator() +
