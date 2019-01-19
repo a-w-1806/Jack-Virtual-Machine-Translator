@@ -19,5 +19,6 @@ public class VMTranslator {
                 codeWriter.writePushPop(parser.getCommand());
             }
         }
+        codeWriter.close();
     }
 }

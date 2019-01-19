@@ -12,6 +12,9 @@ public class Parser {
     }
 
     public boolean hasMoreCommands() {
+        if (!scanner.hasNextLine()) {
+            scanner.close();
+        }
         return scanner.hasNextLine();
     }
 
