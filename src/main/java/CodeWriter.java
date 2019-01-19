@@ -113,6 +113,30 @@ public class CodeWriter {
                                 "M=D";
                 }
                 break;
+            case "temp":
+                if (pushPop.equals("push")) {
+                    assembly += "@5" + System.lineSeparator() +
+                                "D=A" + System.lineSeparator() +
+                                "@" + num + System.lineSeparator() +
+                                "A=D+A" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "M=D" + System.lineSeparator() +
+                                "@SP" + System.lineSeparator() +
+                                "M=M+1";
+                } else {
+                    // Pop.
+                    assembly += "@SP" + System.lineSeparator() +
+                                "M=M-1" + System.lineSeparator() +
+                                "A=M" + System.lineSeparator() +
+                                "D=M" + System.lineSeparator() +
+                                "@5" + System.lineSeparator() +
+                                "D=A" + System.lineSeparator() +
+                                "@" + num + System.lineSeparator() +
+                                "A=D+A" + System.lineSeparator() +
+                                "M=D";
+                }
         }
         return assembly;
     }
