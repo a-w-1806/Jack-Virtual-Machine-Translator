@@ -18,8 +18,29 @@ public class CodeWriter {
         printStream.println(comment + assembly);
     }
 
-    private String generateArithmetic(Map<Integer, String> command) {
-        return "this is generateArithmetic";
+    public String generateArithmetic(Map<Integer, String> command) {
+        String assembly = "";
+        String arith = command.get(0);
+        switch (arith) {
+            case "add": break;
+            case "sub": break;
+            case "neg":
+                assembly += "@SP" + System.lineSeparator() +
+                        "A=M" + System.lineSeparator() +
+                        "M=-M";
+                break;
+            case "eq": break;
+            case "gt": break;
+            case "lt": break;
+            case "and": break;
+            case "or": break;
+            case "not":
+                assembly += "@SP" + System.lineSeparator() +
+                        "A=M" + System.lineSeparator() +
+                        "M=!M";
+                break;
+        }
+        return assembly;
     }
 
     public void writePushPop(Map<Integer, String> command) {
@@ -36,7 +57,7 @@ public class CodeWriter {
         return s.toString() + System.lineSeparator();
     }
 
-    private String generatePushPop(Map<Integer, String> command) {
+    public String generatePushPop(Map<Integer, String> command) {
         return "this is generatePushPop";
     }
 
